@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,11 +23,58 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const menubar = (
+    <div id="menubar" className="sticky top-0 w-full">
+      <Link href="/">Home</Link>
+      <Link href="/jsx">
+        Chapter2
+        <br />
+        JSX
+      </Link>
+      <Link href="/virtual-dom">
+        Chapter3
+        <br />
+        Virtual DOM
+      </Link>
+      <Link href="/reconciliation">
+        Chapter4
+        <br />
+        Reconciliation
+      </Link>
+      <Link href="/patterns">
+        Chapter5
+        <br />
+        Patterns
+      </Link>
+      <Link href="/ssr">
+        Chapter6
+        <br />
+        SSR
+      </Link>
+      <Link href="/concurrency">
+        Chapter7
+        <br />
+        Concurrency
+      </Link>
+      <Link href="/framework">
+        Chapter8
+        <br />
+        Framework
+      </Link>
+      <Link href="/rsc">
+        Chapter9
+        <br />
+        RSC
+      </Link>
+    </div>
+  );
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {menubar}
         {children}
       </body>
     </html>

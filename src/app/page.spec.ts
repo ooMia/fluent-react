@@ -5,6 +5,5 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("title", async ({ page }) => {
-  await expect(page.locator("#title")).toContainText("Hello");
-  await expect(page.locator("#title")).toContainText("World");
+  await expect(page.locator("#title")).toContainText(/fluent react/i);
 });
