@@ -27,42 +27,42 @@ export default function RootLayout({
     <div id="menubar" className="sticky top-0 w-full">
       <Link href="/">Home</Link>
       <Link href="/jsx">
-        Chapter2
+        Chapter 2
         <br />
         JSX
       </Link>
       <Link href="/virtual-dom">
-        Chapter3
+        Chapter 3
         <br />
         Virtual DOM
       </Link>
       <Link href="/reconciliation">
-        Chapter4
+        Chapter 4
         <br />
         Reconciliation
       </Link>
       <Link href="/patterns">
-        Chapter5
+        Chapter 5
         <br />
         Patterns
       </Link>
       <Link href="/ssr">
-        Chapter6
+        Chapter 6
         <br />
         SSR
       </Link>
       <Link href="/concurrency">
-        Chapter7
+        Chapter 7
         <br />
         Concurrency
       </Link>
       <Link href="/framework">
-        Chapter8
+        Chapter 8
         <br />
         Framework
       </Link>
       <Link href="/rsc">
-        Chapter9
+        Chapter 9
         <br />
         RSC
       </Link>
