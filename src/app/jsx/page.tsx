@@ -1,3 +1,6 @@
+import CodeHighlight from "@/component/CodeHighlight";
+import { MyComponent, MyComponentSource } from "./Components";
+
 export default function Chapter2_jsx() {
   const title = (
     <div id="title">
@@ -5,5 +8,11 @@ export default function Chapter2_jsx() {
       JSX
     </div>
   );
-  return <main>{title}</main>;
+  return (
+    <main>
+      {title}
+      {MyComponent()}
+      <CodeHighlight>{MyComponentSource}</CodeHighlight>
+    </main>
+  );
 }
