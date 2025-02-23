@@ -8,7 +8,14 @@ const nextConfig: NextConfig = {
       exclude: ["error"],
     },
   },
-  experimental: {
-    typedRoutes: true,
+  images: {
+    remotePatterns: [
+      {
+        hostname: "image.yes24.com",
+        pathname: "/goods/**",
+      },
+    ],
   },
 };
+
+export default nextConfig;

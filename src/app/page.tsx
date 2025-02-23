@@ -2,12 +2,24 @@ import Image from "next/image";
 
 export default function RootPage() {
   const title = <div id="title">Fluent React</div>;
-  const bookImage = (
+  const bookImageFront = (
     <Image
       src="/front.jpeg"
       alt="book cover"
       fill
-      priority
+      placeholder="blur"
+      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+      sizes="33vw"
+      style={{ objectFit: "contain" }}
+    />
+  );
+  const bookImageBack = (
+    <Image
+      src="https://image.yes24.com/goods/140186612/back/XL"
+      alt="book cover"
+      fill
+      placeholder="blur"
+      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
       sizes="33vw"
       style={{ objectFit: "contain" }}
     />
@@ -15,7 +27,10 @@ export default function RootPage() {
   return (
     <main>
       {title}
-      <div className="relative h-[50vh] w-[50vw]">{bookImage}</div>
+      <div className="flex max-w-[50vw]">
+        <div className="relative h-[50vh] w-[50vw]">{bookImageFront}</div>
+        <div className="relative h-[50vh] w-[50vw]">{bookImageBack}</div>
+      </div>
     </main>
   );
 }
