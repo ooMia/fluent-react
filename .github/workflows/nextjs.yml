@@ -86,8 +86,6 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml', '**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: temp
-        run: mv next.config.js next.config.mjs
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
