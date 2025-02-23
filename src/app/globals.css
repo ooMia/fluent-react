@@ -61,3 +61,14 @@ main {
   margin: 1rem;
   text-align: center;
 }
+
+#tooltip {
+  visibility: hidden;
+  position: absolute;
+  color: var(--foreground);
+  background: var(--background);
+  top: 40px;
+  right: 10px;
+  padding: 5px;
+  font-size: 0.75rem;
+}
