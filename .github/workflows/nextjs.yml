@@ -87,7 +87,7 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Log
-        run: cat next.config.js
+        run: cat next.config.ts
       - name: Log
         run: cat package.json
       - name: Build with Next.js
