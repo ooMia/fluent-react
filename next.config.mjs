@@ -1,7 +1,4 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  // @see https://nextjs.org/docs/architecture/nextjs-compiler
+const nextConfig = {
   compiler: {
     reactRemoveProperties: true,
     removeConsole: {

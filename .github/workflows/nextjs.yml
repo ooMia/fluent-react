@@ -59,11 +59,11 @@ jobs:
         if: steps.detect-package-manager.outputs.manager == 'pnpm'
         uses: pnpm/action-setup@v2
         with:
-          version: 'latest'
+          version: "latest"
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 'latest'
+          node-version: "latest"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Setup Pages
