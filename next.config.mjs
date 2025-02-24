@@ -1,3 +1,13 @@
+// @ts-check
+
+import { readFileSync } from "fs";
+import { join } from "path";
+
+const packageJson = JSON.parse(
+  readFileSync(join(process.cwd(), "package.json"), "utf8"),
+);
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   compiler: {
     reactRemoveProperties: true,
@@ -13,6 +23,7 @@ const nextConfig = {
       },
     ],
   },
+  assetPrefix: `/${packageJson.name}`,
 };
 
 export default nextConfig;
