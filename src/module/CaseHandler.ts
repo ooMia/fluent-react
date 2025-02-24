@@ -1,12 +1,12 @@
 interface Case {
   src: string;
-  render: Function;
+  render: () => void;
 }
 
 const CaseHandler = {
   cases: [] as Array<Case>,
 
-  addCase(src: string, render: Function) {
+  addCase(src: string, render: () => void) {
     this.cases.push({ src, render });
   },
 
