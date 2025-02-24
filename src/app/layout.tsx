@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     "Practicing the concepts and exercises from the book 'Fluent React'",
   keywords: ["React", "Fluent React", "Frontend"],
   authors: [{ name: "ooMia", url: "https://github.com/ooMia" }],
+  openGraph: {
+    images: ["https://oomia.github.io/fluent-react/opengraph-image.jpeg"],
+  },
 };
 
 export default function RootLayout({
