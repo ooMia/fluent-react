@@ -28,7 +28,16 @@ export default function CodeHighlight({ children }: { children: string }) {
 
   return (
     <div style={{ position: "relative" }}>
-      <SyntaxHighlighter language="jsx" style={prism}>
+      <SyntaxHighlighter
+        language="jsx"
+        style={{
+          ...prism,
+          'pre[class*="language-"]': {
+            ...prism['pre[class*="language-"]'],
+            paddingRight: "4rem",
+          },
+        }}
+      >
         {children}
       </SyntaxHighlighter>
       <button
