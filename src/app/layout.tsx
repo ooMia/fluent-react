@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   keywords: ["React", "Fluent React", "Frontend"],
   authors: [{ name: "ooMia", url: "https://github.com/ooMia" }],
   openGraph: {
-    images: ["https://oomia.github.io/fluent-react/opengraph-image.jpeg"],
+    images: ["https://oomia.github.io/fluent-react/front.jpeg"],
   },
 };
 
