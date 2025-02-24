@@ -1,4 +1,4 @@
-import front from "@/public/opengraph-image.jpeg";
+import front from "@/app/opengraph-image.jpeg";
 import Image from "next/image";
 
 export default function RootPage() {
