@@ -1,10 +1,11 @@
+import front from "@/public/front.jpeg";
 import Image from "next/image";
 
 export default function RootPage() {
   const title = <div id="title">Fluent React</div>;
   const bookImageFront = (
     <Image
-      src="/front.jpeg"
+      src={front}
       alt="book cover"
       fill
       placeholder="blur"
