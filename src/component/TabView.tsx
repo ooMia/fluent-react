@@ -18,7 +18,9 @@ const TabView = ({ children }: { children: React.ReactNode[] }) => {
           </button>
         ))}
       </div>
-      <div className="container rect">{children[activeTab]}</div>
+      <div className="flex flex-col items-center container rect">
+        {children[activeTab]}
+      </div>
     </div>
   );
 };

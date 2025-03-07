@@ -27,7 +27,7 @@ export default function CodeHighlight({ children }: { children: string }) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="w-full" style={{ position: "relative" }}>
       <SyntaxHighlighter
         language="jsx"
         style={{
