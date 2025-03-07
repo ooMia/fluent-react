@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useReducer, useRef, useState } from "react";
 
 // ------------------------------ Case A ------------------------------
 
@@ -280,24 +280,6 @@ function ExpensiveComponent() {
   );
 }
 
-const initialState = { text: "", isValid: false };
-export function ClientComponentC() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: "handleInput", payload: e.target.value });
-  };
-  return (
-    <div className="flex flex-col items-center gap-4">
-      <ExpensiveComponent />
-      <input
-        value={state.text}
-        onChange={handleChange}
-        className="text-black"
-      />
-      <button disabled={!state.isValid}>Submit</button>
-    </div>
-  );
-}
 function reducer(
   state: {
     text: string;
@@ -315,3 +297,63 @@ function reducer(
       throw new Error();
   }
 }
+const initialState = { text: "", isValid: false };
+
+export function ClientComponentC() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: "handleInput", payload: e.target.value });
+  };
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <ExpensiveComponent />
+      <input
+        value={state.text}
+        onChange={handleChange}
+        className="text-black"
+      />
+      <button disabled={!state.isValid}>Submit</button>
+    </div>
+  );
+}
+
+export const srcCaseC = `"use client";
+
+import { ChangeEvent, useReducer } from "react";
+
+function reducer(
+  state: {
+    text: string;
+    isValid: boolean;
+  },
+  action: { type: string; payload: string },
+) {
+  switch (action.type) {
+    case "handleInput":
+      return {
+        text: action.payload,
+        isValid: action.payload.length > 0,
+      };
+    default:
+      throw new Error();
+  }
+}
+const initialState = { text: "", isValid: false };
+
+export function ClientComponentC() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: "handleInput", payload: e.target.value });
+  };
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <ExpensiveComponent />
+      <input
+        value={state.text}
+        onChange={handleChange}
+        className="text-black"
+      />
+      <button disabled={!state.isValid}>Submit</button>
+    </div>
+  );
+}`;

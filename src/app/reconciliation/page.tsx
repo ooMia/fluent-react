@@ -7,6 +7,7 @@ import {
   ClientComponentC,
   srcCaseA,
   srcCaseB,
+  srcCaseC,
   treeCaseA,
 } from "./ClientComponents";
 import case_b from "./case_b.png";
@@ -36,6 +37,7 @@ export default function Chapter4_reconciliation() {
         </>
         <>
           <ClientComponentC />
+          <CodeHighlight>{srcCaseC}</CodeHighlight>
           <Image src={case_c} alt="case c" />
         </>
       </TabView>
