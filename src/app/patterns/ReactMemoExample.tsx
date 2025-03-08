@@ -1,102 +1,13 @@
 "use client";
 
 import CodeHighlight from "@/component/CodeHighlight";
+import { asLoggableComponent } from "@/module/LoggableComponent";
 import React, { useState } from "react";
 
-// 메모이제이션되지 않은 컴포넌트
-const RegularAdd = ({ n1, n2 }: { n1: number; n2: number }) => {
-  console.log("[RegularAdd] 렌더링 발생", n1, n2);
-  return (
-    <>
-      <td>RegularAdd</td>
-      <td className="text-center">{n1 + n2}</td>
-    </>
-  );
-};
-
-const Case1A_src = `"use client";
-
-import React from "react";
-
-// 메모이제이션되지 않은 컴포넌트
-const RegularAdd = ({ n1, n2 }) => {
-  console.log("[RegularAdd] 렌더링 발생", n1, n2);
-  return (
-    <>
-      <td>RegularAdd</td>
-      <td>{n1 + n2}</td>
-    </>
-  );
-};`;
-
-// React.memo로 최적화된 컴포넌트
-const MemoizedAdd = React.memo(function MemoizedAdd({
-  n1,
-  n2,
-}: {
+type PropsAddTwo = {
   n1: number;
   n2: number;
-}) {
-  console.log("[MemoizedAdd] 렌더링 발생", n1, n2);
-  return (
-    <>
-      <td>MemoizedAdd</td>
-      <td className="text-center">{n1 + n2}</td>
-    </>
-  );
-});
-
-const Case1B_src = `"use client";
-
-import React from "react";
-
-// React.memo로 최적화된 컴포넌트
-const MemoizedAdd = React.memo(function MemoizedAdd({
-  n1, n2,
-}) {
-  console.log("[MemoizedAdd] 렌더링 발생", n1, n2);
-  return (
-    <>
-      <td>MemoizedAdd</td>
-      <td>{n1 + n2}</td>
-    </>
-  );
-});`;
-
-// 객체를 props로 전달받는 React.memo 컴포넌트
-const MemoizedAddObject = React.memo(function MemoizedAddObject({
-  obj,
-}: {
-  obj: {
-    n1: number;
-    n2: number;
-  };
-}) {
-  console.log("[MemoizedAddObject] 렌더링 발생", obj);
-  return (
-    <>
-      <td>MemoizedAddObject</td>
-      <td className="text-center">{obj.n1 + obj.n2}</td>
-    </>
-  );
-});
-
-const Case1C_src = `"use client";
-
-import React from "react";
-
-// 객체를 props로 전달받는 React.memo 컴포넌트
-const MemoizedAddObject = React.memo(function MemoizedAddObject({
-  obj,
-}) {
-  console.log("[MemoizedAddObject] 렌더링 발생", obj);
-  return (
-    <>
-      <td>MemoizedAddObject</td>
-      <td>{obj.n1 + obj.n2}</td>
-    </>
-  );
-});`;
+};
 
 export const Case1A_comp = () => {
   const [count, setCount] = useState(0);
@@ -130,7 +41,7 @@ export const Case1A_comp = () => {
 
             <tr onClick={() => setSrc(Case1C_src)} className="cursor-pointer">
               {/* 인라인 객체는 매번 새로 생성되어 메모이제이션 효과가 없음 */}
-              <MemoizedAddObject
+              <NonMemoizedAddWithObjProp
                 obj={{
                   n1: value1,
                   n2: value2,
@@ -151,3 +62,83 @@ export const Case1A_comp = () => {
     </>
   );
 };
+
+// 메모이제이션되지 않은 컴포넌트: 부모가 리렌더링되면 매번 렌더링됨
+// causes re-render on parent re-render
+const RegularAdd = asLoggableComponent(({ n1, n2 }: PropsAddTwo) => {
+  return (
+    <>
+      <td>⚠️ RegularAdd</td>
+      <td className="text-center">{n1 + n2}</td>
+    </>
+  );
+}, "RegularAdd");
+
+const Case1A_src = `"use client";
+
+// 메모이제이션되지 않은 컴포넌트: 부모가 리렌더링되면 매번 렌더링됨
+// causes re-render on parent re-render
+const RegularAdd = ({ n1, n2 }) => {
+  return (
+    <>
+      <td>⚠️ RegularAdd</td>
+      <td>{n1 + n2}</td>
+    </>
+  );
+};`;
+
+// React.memo로 메모이제이션된 컴포넌트
+// no re-render after initial render
+const MemoizedAdd = React.memo(
+  asLoggableComponent(({ n1, n2 }: PropsAddTwo) => {
+    return (
+      <>
+        <td>✅ MemoizedAdd</td>
+        <td className="text-center">{n1 + n2}</td>
+      </>
+    );
+  }, "MemoizedAdd"),
+);
+
+const Case1B_src = `"use client";
+
+import React from "react";
+
+// React.memo로 메모이제이션된 컴포넌트
+// no re-render after initial render
+const MemoizedAdd = React.memo(({ n1, n2 }) => {
+  return (
+    <>
+      <td>✅ MemoizedAdd</td>
+      <td>{n1 + n2}</td>
+    </>
+  );
+});`;
+
+// 객체를 props로 전달받는 React.memo 컴포넌트
+// 인라인 객체는 매번 새로 생성되어 메모이제이션 효과가 없음
+const NonMemoizedAddWithObjProp = React.memo(
+  asLoggableComponent(({ obj }: { obj: PropsAddTwo }) => {
+    return (
+      <>
+        <td>⚠️ NonMemoizedAddWithObjProp</td>
+        <td className="text-center">{obj.n1 + obj.n2}</td>
+      </>
+    );
+  }, "NonMemoizedAddWithObjProp"),
+);
+
+const Case1C_src = `"use client";
+
+import React from "react";
+
+// 객체를 props로 전달받는 React.memo 컴포넌트
+// 인라인 객체는 매번 새로 생성되어 메모이제이션 효과가 없음
+const NonMemoizedAddWithObjProp = React.memo(({ obj }) => {
+  return (
+    <>
+      <td>⚠️ NonMemoizedAddWithObjProp</td>
+      <td>{obj.n1 + obj.n2}</td>
+    </>
+  );
+});`;
