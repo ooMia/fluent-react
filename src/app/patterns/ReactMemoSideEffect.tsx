@@ -5,7 +5,8 @@ import { asLoggableComponent } from "@/module/LoggableComponent";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 
-const apiUrl = "/api/random/api/v1.0/random?min=10&max=20&count=1";
+const apiUrl =
+  "https://67zi3mmnbnn2gyxdv43mwvrdem0rkrrj.lambda-url.ap-northeast-2.on.aws/?min=10&max=50&count=1";
 
 export const Case1B_comp = () => {
   const [count, setCount] = useState(0);
@@ -112,7 +113,10 @@ const FetchOnceNoUpdate = React.memo(
     useEffect(() => {
       fetch(apiUrl)
         .then((res) => res.json())
-        .then((data) => setData(data[0]));
+        .then((data) => {
+          console.log(data);
+          setData(data[0]);
+        });
     }, [n]);
 
     return (
