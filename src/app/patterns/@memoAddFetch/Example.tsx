@@ -8,7 +8,7 @@ import useSWR from "swr";
 const apiUrl =
   "https://67zi3mmnbnn2gyxdv43mwvrdem0rkrrj.lambda-url.ap-northeast-2.on.aws/?min=10&max=50&count=1";
 
-export const Case1B_comp = () => {
+export const Component = () => {
   const [count, setCount] = useState(0);
   const [value] = useState(1);
   const [src, setSrc] = useState(Case2A_src);

@@ -9,7 +9,7 @@ type PropsAddTwo = {
   n2: number;
 };
 
-export const Case1A_comp = () => {
+export const Component = () => {
   const [count, setCount] = useState(0);
   const [value1] = useState(1);
   const [value2] = useState(2);
